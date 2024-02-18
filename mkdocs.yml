@@ -1,6 +1,6 @@
 site_name: FEM OpenSees 
 theme:
-  name: spacelab
+  name: materia
   features:
     - navigation.tabs
     - navigation.sections
@@ -13,18 +13,19 @@ theme:
     - content.code.copy
   language: en
   palette:
-    - scheme: default
+  # Palette toggle for light mode
+    - scheme: slate 
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
-      primary: teal
+      primary: indigo
       accent: blue
     - scheme: slate 
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode    
-      primary: teal
-      accent: lime
+      primary: indigo
+      accent: blue
 
 markdown_extensions:
   - pymdownx.highlight:
