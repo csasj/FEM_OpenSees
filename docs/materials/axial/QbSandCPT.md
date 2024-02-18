@@ -1,4 +1,3 @@
-## QbSandCPT
 
 The `QbSandCPT` function implements the shaft-load transfer function, commonly referred to as the **q-z** curve or spring. The required inputs to construct this material are as follows:
 

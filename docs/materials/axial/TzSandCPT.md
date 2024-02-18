@@ -1,4 +1,3 @@
-## TzSandCPT
 
 The `TzSandCPT` function implements the shaft-load transfer function, commonly referred to as the **t-z** curve or spring. The required inputs to construct this material are as follows:
 
