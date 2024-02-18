@@ -1,5 +1,8 @@
 site_name: FEM OpenSees 
 site_url: https://csasj.github.io/FEM_OpenSees/
+
+repo_url: https://github.com/csasj/FEM_OpenSees/
+
 theme:
   name: material
   features:
