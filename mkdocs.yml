@@ -1,6 +1,6 @@
 site_name: FEM OpenSees 
 theme:
-  name: materia
+  name: material
   features:
     - navigation.tabs
     - navigation.sections
@@ -14,7 +14,7 @@ theme:
   language: en
   palette:
   # Palette toggle for light mode
-    - scheme: slate 
+    - scheme: default 
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
