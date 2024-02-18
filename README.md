@@ -1,5 +1,3 @@
-# Welcome to GitHub Desktop!
+# Finite Element Analysis with OpenSees
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
-
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+This git repository contains documentation and tutorial examples for conducting finite element analysis through the [OpenSees simulation platform](https://github.com/OpenSees/OpenSees). 
