@@ -1,0 +1,722 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://csasj.github.io/FEM_OpenSees/materials/axial/TzSandCPT/">
+      
+      
+        <link rel="prev" href="../../..">
+      
+      
+        <link rel="next" href="../QbSandCPT/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>TzSandCPT - FEM OpenSees</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-description" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="FEM OpenSees" class="md-header__button md-logo" aria-label="FEM OpenSees" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            FEM OpenSees
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              TzSandCPT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/csasj/FEM_OpenSees/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Materials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../examples/1_EuripidesB2/" class="md-tabs__link">
+          
+  
+  Worked examples
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="FEM OpenSees" class="md-nav__button md-logo" aria-label="FEM OpenSees" data-md-component="logo">
+      
+  <img src="../../../img/logo.png" alt="logo">
+
+    </a>
+    FEM OpenSees
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/csasj/FEM_OpenSees/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Materials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Materials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    TzSandCPT
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    TzSandCPT
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Description
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-ultimate-skin-friction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Ultimate skin friction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-material-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Material behaviour
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. How to use
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How to use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QbSandCPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QbSandCPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Worked examples
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Worked examples
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../examples/1_EuripidesB2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Axial pile response in SANDS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>TzSandCPT</h1>
+
+<p>The <code>TzSandCPT</code> function implements the shaft-load transfer function, commonly referred to as the <strong>t-z</strong> curve or spring. The required inputs to construct this material are as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">uniaxialMaterial</span><span class="p">(</span><span class="s1">&#39;TzSandCPT&#39;</span><span class="p">,</span> <span class="n">matTag</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">Sv_eff</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">dz</span><span class="p">,</span> <span class="n">dcpt</span><span class="p">,</span> <span class="n">pa</span><span class="p">,</span> <span class="n">delta_f</span><span class="o">=</span><span class="mf">29.0</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">    Constructs a TzSandCPT uniaxial material object.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">        matTag (int): Integer tag identifying material.</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="sd">        qc (float): Cone resistance.</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">        Sv_eff (float): Vertical effective soil stress.</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">        D (float): Pile outer diameter.</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">        t (float): Pile wall thickness.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd">        h (float): Distance to the pile tip.</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">        dz (float): Local pile height.</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="sd">        dcpt (float): Diameter of the standard CPT probe (see note).</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="sd">        pa (float): Atmospheric pressure (see note).</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">        delta_f (float, optional): Ultimate interface friction angle (default: 29.0 degrees).</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="sd">        uniaxialMaterial: TzSandCPT material object.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="sd">    Note:</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="sd">        - The nominal value of the diameter of the standard CPT probe is 35.7mm.</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="sd">        - For the atmospheric pressure, a value of 100 kPa or equivalent may be retained.</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="sd">        - For the ultimate sand-pile interface friction angle, in the absence of site-specific measurements,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="sd">          the recommended value of 29° is assumed as suggested in the literature.</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="1-description">1. Description</h3>
+<p>The shaft or skin friction load-transfer function is computed according to the <em>new Unified CPT-based method</em> <a href="#1">[1]</a> for driven piles in sands. The unified method for sands assumes a parabolic formula as given below.</p>
+<div class="arithmatex">\[
+\frac{\tau}{\tau_{\mathrm{f}}} = \left(\frac{G}{\tau_{\mathrm{f}}}\right) \left(\frac{z}{2D}\right) \left[1 - \frac{z}{2z_{\mathrm{f}}}\right]
+\]</div>
+<p>where the ratio <span class="arithmatex">\( \frac{G}{\tau_{\mathrm{f}}} \)</span> is inversely proportional to the displacement <span class="arithmatex">\( z_f \)</span> at which the peak shear friction <span class="arithmatex">\( \tau_f \)</span> is mobilized.</p>
+<div class="arithmatex">\[
+\frac{G}{\tau_{\mathrm{f}}} = \frac{4D}{z_f} 
+\]</div>
+<p>The API (2011) guidelines recommend a constant value of 0.01 for the normalized peak displacement <span class="arithmatex">\( \frac{z_f}{D} \)</span>. The unified method proposes the following expression that allows for a better match with the database pile test results:</p>
+<div class="arithmatex">\[
+\frac{z_{\mathrm{f}}}{D} = \frac{q_{\mathrm{c}}^{0.5} \sigma_{\mathrm{v}}^{\prime 0.25}}{A p_{\mathrm{a}}^{0.75}} 
+\]</div>
+<p>where <span class="arithmatex">\( p_a \)</span> is the atmospheric pressure, equal to 100 kPa, and <span class="arithmatex">\( \sigma_{\mathrm{v}}^{\prime} \)</span> is the vertical effective stress. The proposed values for <span class="arithmatex">\( A \)</span> are 1250 for compression and half of that, i.e., 625, for tension.</p>
+<h4 id="11-ultimate-skin-friction">1.1. Ultimate skin friction</h4>
+<p>The material calculates the maximum shaft or skin friction according to the formulations as developed in <a href="#2">[2]</a>. A Coulomb’s law is assumed to estimate <span class="arithmatex">\( \tau_f \)</span> as follows:</p>
+<div class="arithmatex">\[
+\tau_f = \left(\frac{f_t}{f_c}\right) \left(\sigma'_{rc} + \Delta \sigma'_{rd}\right) \tan \delta_f
+\]</div>
+<p>where <span class="arithmatex">\( \sigma'_{rc} \)</span> is the (stationary) radial effective stress, <span class="arithmatex">\( \Delta \sigma'_{rd} \)</span> is the increase in radial effective stress that occurs during pile loading. The term <span class="arithmatex">\( \delta_f \)</span> stands for the ultimate sand-pile interface friction angle, in the absence of site-specific measurements, a constant value of <span class="arithmatex">\( 29^\circ \)</span> is recommended. The coefficient <span class="arithmatex">\( \frac{f_t}{f_c} \)</span> becomes 1 for compression loading and 0.75 for tension loading.</p>
+<p>The term <span class="arithmatex">\( \sigma'_{rc} \)</span> is calculated below.</p>
+<div class="arithmatex">\[
+\sigma_{rc}^{\prime} = \left(\frac{q_c}{44}\right) A_{re}^{0.3}[\operatorname{Max}[1,(h / D)]]^{-0.4}
+\]</div>
+<p>where <span class="arithmatex">\( h \)</span> refers to the distance from the pile tip to a given soil depth, and <span class="arithmatex">\( A_{re} \)</span> represents the effective area ratio. Note that for a closed-ended pile <span class="arithmatex">\( A_{re} \)</span> becomes 1.</p>
+<div class="arithmatex">\[
+A_{re} = 1 - \text{PLR}\left(\frac{D_{i}}{D}\right)^2
+\]</div>
+<p>being <span class="arithmatex">\( D_{i} \)</span> the pile inner diameter and <span class="arithmatex">\( \text{PLR} \)</span> the ratio of the plug length to the pile embedment which can be approximated as shown in the following equation.</p>
+<div class="arithmatex">\[
+\text{PLR} \approx \tanh \left[0.3\left(\frac{D_i}{d_{CPT}}\right)^{0.5}\right]
+\]</div>
+<p>The <span class="arithmatex">\( \Delta \sigma'_{rd} \)</span> term is usually attributed to dilation effects and can be calculated as follows:</p>
+<div class="arithmatex">\[
+\Delta \sigma_{rd}^{\prime} = \left(\frac{q_c}{10}\right)\left(\frac{q_c}{\sigma_v^{\prime}}\right)^{-0.33}\left(\frac{d_{CPT}}{D}\right)
+\]</div>
+<p>with the nominal diameter of a CPT probe being <span class="arithmatex">\( d_{CPT} = 35.7 \)</span> mm.</p>
+<h3 id="2-material-behaviour">2. Material behaviour</h3>
+<p>The input data assumed is based on a typical sand site in the Gulf of Mexico. The simulated behavior for this example is shown in the following figure.</p>
+<p><img alt="Shaft Behavior" src="../figures/tzsandcpt.png" /></p>
+<p>Users can verify that the internally computed ultimate shaft friction values should be 84.3kPa and 63.2kPa for compression and tension loading, respectively. These estimates were confirmed by comparing them with those computed using the <a href="https://pile-capacity-uwa.com">UWA calculator</a>, which led to the same results. This can be observed in the left plot, displaying the simulated load-displacement response.</p>
+<p>The right plot compares the normalized form of the simulated <code>TzSandCPT</code> response against the load-transfer curve recommended in API (2011). This comparison shows a close match, as discussed in <a href="#1">[1]</a>.</p>
+<h3 id="3-how-to-use">3. How to use</h3>
+<p>The following constructs a TzSandCPT material with a tag of <strong>1</strong>, <span class="arithmatex">\( q_c \)</span> of <strong>39928 kPa</strong>, <span class="arithmatex">\( \sigma'_v \)</span> of <strong>203.8 kPa</strong>, <span class="arithmatex">\( D \)</span> of <strong>2.44 m</strong>, <span class="arithmatex">\( t \)</span> of <strong>0.0445 m</strong>, <span class="arithmatex">\( h \)</span> of <strong>40 m</strong>, <span class="arithmatex">\( \Delta_z \)</span> of <strong>1 m</strong>, <span class="arithmatex">\( d_{CPT} \)</span> of <strong>35.7 mm</strong>, and <span class="arithmatex">\( p_{a} \)</span> of <strong>100 kPa</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">uniaxialMaterial</span><span class="p">(</span><span class="s1">&#39;TzSandCPT&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">39928.</span><span class="p">,</span> <span class="mf">203.8</span><span class="p">,</span> <span class="mf">2.44</span><span class="p">,</span> <span class="mf">0.0445</span><span class="p">,</span> <span class="mf">40.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">35.7e-3</span><span class="p">,</span> <span class="mf">100.</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="references">References</h4>
+<p><a id="1">[1]</a>
+Lehane, B. M., Li, L., &amp; Bittar,
+E. J. (2020). Cone penetration test-based load-transfer formulations for
+driven piles in sand.  <em>Geotechnique Letters</em> ,  <em>10</em> (4), 568-574.</p>
+<p><a id="2">[2]</a>
+Lehane, B. M., Liu, Z., Bittar, E., Nadim, F., Lacasse, S., Jardine, R., ... &amp; Gavin, K. (2020). A new'unified'CPT-based axial pile capacity design method for driven piles in sand. In 4th International Symposium on Frontiers in Offshore Geotechnics (postponed) (pp. 462-477).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2023 <a href="https://www.owi-lab.be/"  target="_blank" rel="noopener">Owi-Lab</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
