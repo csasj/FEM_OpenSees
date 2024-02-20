@@ -3,8 +3,17 @@ site_url: https://csasj.github.io/FEM_OpenSees/
 
 repo_url: https://github.com/csasj/FEM_OpenSees/
 
+nav:
+  - Home: index.md
+  - Materials: 
+    - TzSandCPT: 'materials/axial/TzSandCPT.md'
+    - QbSandCPT: 'materials/axial/QbSandCPT.md'
+  - Worked examples: 
+    - TzSandCPT: 'examples/1_EuripidesB2.ipynb'
+
 theme:
   name: material
+  logo: 'img/logo.png'
   features:
     - navigation.tabs
     - navigation.sections
@@ -45,10 +54,13 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+plugins:
+    - mkdocs-jupyter
+
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 copyright: |
-  &copy; 2023 <a href="https://github.com/csasj"  target="_blank" rel="noopener">csasj</a>
+  &copy; 2023 <a href="https://www.owi-lab.be/"  target="_blank" rel="noopener">Owi-Lab</a>
